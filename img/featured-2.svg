@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="40" viewBox="0 0 120 40">
+  <rect width="120" height="40" rx="5" fill="#f8f9fa" />
+  <path d="M20,12 L16,20 L24,20 L20,12 Z M20,24 L16,16 L24,16 L20,24 Z" fill="#6a11cb" />
+  <text x="35" y="20" font-family="Arial" font-size="10" font-weight="bold" fill="#2c3e50">Google Play优质应用</text>
+</svg>
+

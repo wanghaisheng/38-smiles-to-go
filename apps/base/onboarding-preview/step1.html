@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38种笑容训练 - 欢迎</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f2f2f7;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* 魔幻风格设计 */
+        :root {
+            --primary-color: #6a11cb;
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-color: #2575fc;
+            --accent-color: #fd5e53;
+            --text-color: #2c3e50;
+            --light-text: #ffffff;
+            --border-radius: 16px;
+            --small-radius: 8px;
+            --shadow: 0 8px 16px rgba(106, 17, 203, 0.1);
+            --spacing: 16px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        /* 状态栏 */
+        .status-bar {
+            height: 44px;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing);
+            color: var(--light-text);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-bar .time {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .status-bar .battery {
+            display: flex;
+            align-items: center;
+        }
+        
+        .battery-icon {
+            width: 20px;
+            height: 10px;
+            border: 1px solid white;
+            border-radius: 2px;
+            margin-left: 5px;
+            position: relative;
+        }
+        
+        .battery-icon:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 4px;
+            background-color: white;
+            border-radius: 1px;
+        }
+        
+        /* 跳过按钮 */
+        .skip-button {
+            position: absolute;
+            top: 60px;
+            right: var(--spacing);
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .skip-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* 内容区 */
+        .onboarding-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--primary-gradient);
+        }
+        
+        /* 背景元素 */
+        .magic-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        .circle-1 {
+            width: 150px;
+            height: 150px;
+            top: 10%;
+            left: -50px;
+            animation-delay: 0s;
+        }
+        
+        .circle-2 {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            right: -30px;
+            animation-delay: 1s;
+        }
+        
+        .circle-3 {
+            width: 80px;
+            height: 80px;
+            top: 40%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .magic-star {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: twinkle 4s infinite ease-in-out;
+        }
+        
+        .star-1 {
+            top: 20%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+        
+        .star-2 {
+            top: 70%;
+            left: 80%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 1s;
+        }
+        
+        .star-3 {
+            top: 30%;
+            left: 70%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+        }
+        
+        /* 图标 */
+        .illustration {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            margin-bottom: 30px;
+            position: relative;
+            animation: pulse 3s infinite;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .illustration:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 2px dashed rgba(255, 255, 255, 0.5);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .illustration:after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            animation: rotate 30s linear infinite reverse;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background-color: white;
+            border-radius: 3px;
+        }
+        
+        .description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 280px;
+            margin-bottom: 40px;
+        }
+        
+        /* 底部导航 */
+        .navigation {
+            width: 100%;
+            padding: 20px var(--spacing);
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .dots {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .nav-button {
+            padding: 12px 24px;
+            background-color: white;
+            color: var(--primary-color);
+            border-radius: 24px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-button.back {
+            background-color: transparent;
+            color: white;
+            box-shadow: none;
+        }
+        
+        .nav-button.back:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .arrow-icon {
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="signal">
+                <i class="signal-icon">📶</i>
+            </div>
+            <div class="time">9:41</div>
+            <div class="battery">
+                100% <div class="battery-icon"></div>
+            </div>
+        </div>
+        
+        <!-- 跳过按钮 -->
+        <button class="skip-button" onclick="window.location.href='paywall-preview/subscription.html'">跳过</button>
+        
+        <!-- 内容区域 -->
+        <div class="onboarding-content">
+            <!-- 背景元素 -->
+            <div class="magic-circle circle-1"></div>
+            <div class="magic-circle circle-2"></div>
+            <div class="magic-circle circle-3"></div>
+            
+            <div class="magic-star star-1"></div>
+            <div class="magic-star star-2"></div>
+            <div class="magic-star star-3"></div>
+            
+            <!-- 内容 -->
+            <div class="illustration">✨</div>
+            <h1 class="title">欢迎来到笑容的魔法世界</h1>
+            <p class="description">38种笑容训练将帮助你掌握各种场合的完美笑容表达，提升你的社交魅力</p>
+            
+            <!-- 底部导航 -->
+            <div class="navigation">
+                <div class="dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="buttons">
+                    <button class="nav-button" onclick="window.location.href='step2.html'">下一步 <span class="arrow-icon">→</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

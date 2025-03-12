@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38种笑容训练 - 订阅</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f2f2f7;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* 魔幻风格设计 */
+        :root {
+            --primary-color: #6a11cb;
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-color: #2575fc;
+            --accent-color: #fd5e53;
+            --text-color: #2c3e50;
+            --light-text: #ffffff;
+            --border-radius: 16px;
+            --small-radius: 8px;
+            --shadow: 0 8px 16px rgba(106, 17, 203, 0.1);
+            --spacing: 16px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 状态栏 */
+        .status-bar {
+            height: 44px;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing);
+            color: var(--light-text);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-bar .time {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .status-bar .battery {
+            display: flex;
+            align-items: center;
+        }
+        
+        .battery-icon {
+            width: 20px;
+            height: 10px;
+            border: 1px solid white;
+            border-radius: 2px;
+            margin-left: 5px;
+            position: relative;
+        }
+        
+        .battery-icon:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 4px;
+            background-color: white;
+            border-radius: 1px;
+        }
+        
+        /* 头部区域 */
+        .header {
+            padding: var(--spacing);
+            background-color: white;
+            border-bottom: 1px solid #e1e1e1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .back-button {
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+        
+        .page-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .header-right {
+            width: 20px;
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--spacing);
+            background-color: #f9f9fa;
+        }
+        
+        /* 标题卡 */
+        .title-card {
+            background: var(--primary-gradient);
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            color: white;
+            text-align: center;
+            margin-bottom: var(--spacing);
+            box-shadow: var(--shadow);
+        }
+        
+        .title-card h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .title-card p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* 特权卡片 */
+        .benefits-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            margin-bottom: var(--spacing);
+            box-shadow: var(--shadow);
+        }
+        
+        .benefits-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+        
+        .benefits-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .benefit-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.1), rgba(37, 117, 252, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-right: 8px;
+            flex-shrink: 0;
+            color: var(--primary-color);
+        }
+        
+        .benefit-text {
+            font-size: 13px;
+            color: var(--text-color);
+        }
+        
+        /* 订阅卡片 */
+        .subscription-cards {
+            margin-bottom: var(--spacing);
+        }
+        
+        .subscription-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            margin-bottom: var(--spacing);
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .subscription-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(106, 17, 203, 0.15);
+        }
+        
+        .subscription-card.selected {
+            border-color: var(--primary-color);
+        }
+        
+        .subscription-card.popular {
+            border-color: var(--primary-color);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .subscription-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing);
+        }
+        
+        .subscription-radio {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .subscription-card.selected .subscription-radio {
+            border-color: var(--primary-color);
+        }
+        
+        .subscription-card.selected .subscription-radio:after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+        }
+        
+        .subscription-info {
+            flex: 1;
+        }
+        
+        .subscription-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+        
+        .subscription-price {
+            display: flex;
+            align-items: baseline;
+        }
+        
+        .price-current {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+        
+        .price-original {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .price-period {
+            font-size: 14px;
+            color: #999;
+            margin-left: 4px;
+        }
+        
+        .subscription-save {
+            display: inline-block;
+            background-color: rgba(106, 17, 203, 0.1);
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: var(--small-radius);
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+        
+        .subscription-content {
+            padding-left: 36px;
+        }
+        
+        .subscription-features {
+            margin-top: 8px;
+        }
+        
+        .subscription-features li {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .subscription-features li:before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        
+        /* 订阅按钮 */
+        .subscription-action {
+            margin-top: var(--spacing);
+        }
+        
+        .subscribe-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            width: 100%;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.2);
+        }
+        
+        /* 促销信息 */
+        .promo-card {
+            background: linear-gradient(135deg, #fd5e53 0%, #fc9842 100%);
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            color: white;
+            margin-bottom: var(--spacing);
+            display: flex;
+            align-items: center;
+            box-shadow: 0 8px 16px rgba(253, 94, 83, 0.2);
+        }
+        
+        .promo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-right: 12px;
+        }
+        
+        .promo-content {
+            flex: 1;
+        }
+        
+        .promo-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .promo-desc {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .countdown {
+            font-weight: 700;
+        }
+        
+        /* 信息卡片 */
+        .info-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            margin-bottom: var(--spacing);
+            box-shadow: var(--shadow);
+        }
+        
+        .info-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+        
+        .info-list li {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .info-list li:before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        /* 安全信息 */
+        .security-info {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-top: var(--spacing);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .security-icons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .security-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            font-size: 10px;
+        }
+        
+        /* 底部导航栏 */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 12px var(--spacing);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #999;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+            position: relative;
+        }
+        
+        .nav-item.active .nav-icon:before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, rgba(106, 17, 203, 0.1), transparent);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        /* 动画效果 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="signal">
+                <i class="signal-icon">📶</i>
+            </div>
+            <div class="time">9:41</div>
+            <div class="battery">
+                100% <div class="battery-icon"></div>
+            </div>
+        </div>
+        
+        <!-- 头部 -->
+        <div class="header">
+            <div class="back-button" onclick="window.history.back()">←</div>
+            <h1 class="page-title">订阅会员</h1>
+            <div class="header-right"></div>
+        </div>
+        
+        <!-- 主要内容区域 -->
+        <div class="main-content">
+            <div class="title-card">
+                <h2>解锁完整功能</h2>
+                <p>订阅会员，获得全部38种专业笑容训练和AI分析功能</p>
+            </div>
+            
+            <div class="benefits-card">
+                <h3 class="benefits-title">会员专属特权</h3>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">😊</div>
+                        <div class="benefit-text">38种专业笑容训练</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🤖</div>
+                        <div class="benefit-text">AI笑容分析与反馈</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">📊</div>
+                        <div class="benefit-text">详细进度跟踪与统计</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">👨‍👩‍👧‍👦</div>
+                        <div class="benefit-text">社区交流与分享功能</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🎮</div>
+                        <div class="benefit-text">情境模拟训练</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">👩‍🏫</div>
+                        <div class="benefit-text">专家一对一咨询</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="promo-card">
+                <div class="promo-icon">🎁</div>
+                <div class="promo-content">
+                    <div class="promo-title">限时优惠</div>
+                    <div class="promo-desc">首月订阅立享五折优惠，仅剩 <span class="countdown">23:45:12</span></div>
+                </div>
+            </div>
+            
+            <div class="subscription-cards">
+                <div class="subscription-card">
+                    <div class="subscription-header">
+                        <div class="subscription-radio"></div>
+                        <div class="subscription-info">
+                            <div class="subscription-title">月度会员</div>
+                            <div class="subscription-price">
+                                <div class="price-current">¥39</div>
+                                <div class="price-original">¥78</div>
+                                <div class="price-period">/月</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subscription-content">
+                        <div class="subscription-features">
+                            <ul>
+                                <li>38种专业笑容训练</li>
+                                <li>AI笑容分析与反馈</li>
+                                <li>进度跟踪与统计</li>
+                                <li>社区交流功能</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subscription-card popular selected">
+                    <div class="popular-tag">最受欢迎</div>
+                    <div class="subscription-header">
+                        <div class="subscription-radio"></div>
+                        <div class="subscription-info">
+                            <div class="subscription-title">年度会员</div>
+                            <div class="subscription-price">
+                                <div class="price-current">¥299</div>
+                                <div class="price-original">¥468</div>
+                                <div class="price-period">/年</div>
+                            </div>
+                            <div class="subscription-save">节省¥169</div>
+                        </div>
+                    </div>
+                    <div class="subscription-content">
+                        <div class="subscription-features">
+                            <ul>
+                                <li>38种专业笑容训练</li>
+                                <li>AI笑容分析与反馈</li>
+                                <li>进度跟踪与统计</li>
+                                <li>社区交流功能</li>
+                                <li>情境模拟训练</li>
+                                <li>专家一对一咨询(2次)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subscription-card">
+                    <div class="subscription-header">
+                        <div class="subscription-radio"></div>
+                        <div class="subscription-info">
+                            <div class="subscription-title">终身会员</div>
+                            <div class="subscription-price">
+                                <div class="price-current">¥499</div>
+                                <div class="price-original">¥999</div>
+                                <div class="price-period">一次性</div>
+                            </div>
+                            <div class="subscription-save">节省¥500</div>
+                        </div>
+                    </div>
+                    <div class="subscription-content">
+                        <div class="subscription-features">
+                            <ul>
+                                <li>38种专业笑容训练</li>
+                                <li>AI笑容分析与反馈</li>
+                                <li>进度跟踪与统计</li>
+                                <li>社区交流功能</li>
+                                <li>情境模拟训练</li>
+                                <li>专家一对一咨询(5次)</li>
+                                <li>未来所有功能更新</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subscription-action">
+                <button class="subscribe-btn pulse">立即订阅</button>
+            </div>
+            
+            <div class="info-card">
+                <h3 class="info-title">订阅说明</h3>
+                <ul class="info-list">
+                    <li>付款将在确认购买时通过iTunes账户扣除</li>
+                    <li>订阅自动续订，除非在当前周期结束前至少24小时关闭自动续订</li>
+                    <li>可以在iTunes账户设置中管理订阅和自动续订</li>
+                    <li>7天内如不满意，可全额退款</li>
+                </ul>
+            </div>
+            
+            <div class="security-info">
+                <div class="security-icons">
+                    <div class="security-icon">🔒</div>
+                    <div class="security-icon">💳</div>
+                    <div class="security-icon">✓</div>
+                </div>
+                <p>安全支付 · 随时可取消 · 7天内不满意全额退款</p>
+            </div>
+        </div>
+        
+        <!-- 底部导航栏 -->
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <div class="nav-icon">🏠</div>
+                <div>首页</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">📚</div>
+                <div>练习</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">📊</div>
+                <div>数据</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">👨‍👩‍👧‍👦</div>
+                <div>社区</div>
+            </div>
+            <div class="nav-item active">
+                <div class="nav-icon">👤</div>
+                <div>我的</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 选择订阅计划
+        document.querySelectorAll('.subscription-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // 移除所有卡片的选中状态
+                document.querySelectorAll('.subscription-card').forEach(c => {
+                    c.classList.remove('selected');
+                });
+                
+                // 为点击的卡片添加选中状态
+                this.classList.add('selected');
+            });
+        });
+        
+        // 倒计时功能
+        function updateCountdown() {
+            const countdownElement = document.querySelector('.countdown');
+            if (!countdownElement) return;
+            
+            // 解析当前倒计时
+            const timeText = countdownElement.textContent;
+            const parts = timeText.split(':');
+            let hours = parseInt(parts[0]);
+            let minutes = parseInt(parts[1]);
+            let seconds = parseInt(parts[2]);
+            
+            // 减少一秒
+            seconds--;
+            if (seconds < 0) {
+                seconds = 59;
+                minutes--;
+                
+                if (minutes < 0) {
+                    minutes = 59;
+                    hours--;
+                    
+                    if (hours < 0) {
+                        hours = 23; // 重置为一天
+                    }
+                }
+            }
+            
+            // 更新显示
+            countdownElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // 每秒更新倒计时
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6a11cb" />
+      <stop offset="100%" stop-color="#2575fc" />
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="55" fill="white" stroke="url(#logo-gradient)" stroke-width="4" />
+  <g transform="translate(30, 35)">
+    <path d="M30,0 C13.4315,0 0,13.4315 0,30 C0,46.5685 13.4315,60 30,60 C46.5685,60 60,46.5685 60,30 C60,13.4315 46.5685,0 30,0 Z M30,50 C19.5066,50 10,45.5228 10,40 C10,34.4772 19.5066,30 30,30 C40.4934,30 50,34.4772 50,40 C50,45.5228 40.4934,50 30,50 Z M20,20 C20,15.5817 24.0294,12 29,12 C33.9706,12 38,15.5817 38,20 C38,24.4183 33.9706,28 29,28 C24.0294,28 20,24.4183 20,20 Z M40,18 C40,14.6863 42.2386,12 45,12 C47.7614,12 50,14.6863 50,18 C50,21.3137 47.7614,24 45,24 C42.2386,24 40,21.3137 40,18 Z" fill="url(#logo-gradient)" />
+    <circle cx="45" cy="18" r="5" fill="white" />
+    <circle cx="29" cy="20" r="8" fill="white" />
+    <path d="M10,40 C10,34.4772 19.5066,30 30,30 C40.4934,30 50,34.4772 50,40" stroke="white" stroke-width="3" fill="none" />
+    <path d="M10,40 C10,34.4772 19.5066,30 30,30 C40.4934,30 50,34.4772 50,40" stroke="url(#logo-gradient)" stroke-width="2" fill="none" stroke-dasharray="2 2" />
+  </g>
+  <text x="60" y="110" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="url(#logo-gradient)">38 SMILES</text>
+</svg>
+

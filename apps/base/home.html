@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38种笑容训练 - 首页</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f2f2f7;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* 魔幻风格设计 */
+        :root {
+            --primary-color: #6a11cb;
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-color: #2575fc;
+            --accent-color: #fd5e53;
+            --text-color: #2c3e50;
+            --light-text: #ffffff;
+            --border-radius: 16px;
+            --small-radius: 8px;
+            --shadow: 0 8px 16px rgba(106, 17, 203, 0.1);
+            --spacing: 16px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 状态栏 */
+        .status-bar {
+            height: 44px;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing);
+            color: var(--light-text);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-bar .time {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .status-bar .battery {
+            display: flex;
+            align-items: center;
+        }
+        
+        .battery-icon {
+            width: 20px;
+            height: 10px;
+            border: 1px solid white;
+            border-radius: 2px;
+            margin-left: 5px;
+            position: relative;
+        }
+        
+        .battery-icon:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 4px;
+            background-color: white;
+            border-radius: 1px;
+        }
+        
+        /* 头部区域 */
+        .header {
+            background: var(--primary-gradient);
+            padding: var(--spacing);
+            color: var(--light-text);
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header:before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .header:after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing);
+        }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            margin-right: var(--spacing);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .avatar-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .avatar:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(106, 17, 203, 0.3), transparent);
+            z-index: 2;
+        }
+        
+        .user-greeting h1 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .user-greeting p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--spacing);
+        }
+        
+        .stat {
+            text-align: center;
+            flex: 1;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--small-radius);
+            margin: 0 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--spacing);
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: var(--spacing);
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title:before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--primary-gradient);
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        
+        .today-training {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            margin-bottom: var(--spacing);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .today-training:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, rgba(106, 17, 203, 0.1), transparent);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .progress-circles {
+            display: flex;
+            justify-content: space-around;
+            margin: var(--spacing) 0;
+        }
+        
+        .progress-circle {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .circle-background {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid #f0f0f0;
+        }
+        
+        .circle-progress {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: var(--primary-color);
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .progress-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        
+        .progress-label {
+            position: absolute;
+            bottom: -20px;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .training-action {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .start-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--small-radius);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(106, 17, 203, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(106, 17, 203, 0.3);
+        }
+        
+        .start-btn .icon {
+            margin-right: 8px;
+        }
+        
+        .smile-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing);
+            margin-bottom: var(--spacing);
+        }
+        
+        .smile-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .smile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(106, 17, 203, 0.15);
+        }
+        
+        .smile-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-gradient);
+        }
+        
+        .smile-card:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, rgba(106, 17, 203, 0.1), transparent);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .smile-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        
+        .smile-icon:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(106, 17, 203, 0.1), transparent);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .smile-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 4px;
+            text-align: center;
+        }
+        
+        .smile-count {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .special-offer {
+            background: linear-gradient(135deg, #fd5e53 0%, #fc9842 100%);
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            color: white;
+            margin-bottom: var(--spacing);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(253, 94, 83, 0.2);
+        }
+        
+        .special-offer:before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .special-offer:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .offer-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .offer-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .offer-title .icon {
+            margin-right: 8px;
+        }
+        
+        .offer-description {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+        
+        .offer-button {
+            background-color: white;
+            color: #fd5e53;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--small-radius);
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .offer-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 底部导航栏 */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 12px var(--spacing);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #999;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+            position: relative;
+        }
+        
+        .nav-item.active .nav-icon:before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, rgba(106, 17, 203, 0.1), transparent);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        /* 动画和特效 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="signal">
+                <i class="signal-icon">📶</i>
+            </div>
+            <div class="time">9:41</div>
+            <div class="battery">
+                100% <div class="battery-icon"></div>
+            </div>
+        </div>
+        
+        <!-- 头部区域 -->
+        <div class="header">
+            <div class="header-content">
+                <div class="user-info">
+                    <div class="avatar">
+                        <span class="avatar-image">👤</span>
+                    </div>
+                    <div class="user-greeting">
+                        <h1>你好，小明</h1>
+                        <p>今天是笑容练习的第14天</p>
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-value">14</span>
+                        <span class="stat-label">已练习天数</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">8</span>
+                        <span class="stat-label">已掌握笑容</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">62%</span>
+                        <span class="stat-label">总体进度</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 主要内容区域 -->
+        <div class="main-content">
+            <h2 class="section-title">今日训练</h2>
+            <div class="today-training">
+                <div class="progress-circles">
+                    <div class="progress-circle">
+                        <div class="circle-background"></div>
+                        <div class="circle-progress" style="transform: rotate(180deg);"></div>
+                        <div class="progress-value">75%</div>
+                        <div class="progress-label">开怀大笑</div>
+                    </div>
+                    <div class="progress-circle">
+                        <div class="circle-background"></div>
+                        <div class="circle-progress" style="transform: rotate(144deg);"></div>
+                        <div class="progress-value">40%</div>
+                        <div class="progress-label">安慰的笑</div>
+                    </div>
+                    <div class="progress-circle">
+                        <div class="circle-background"></div>
+                        <div class="circle-progress" style="transform: rotate(324deg);"></div>
+                        <div class="progress-value">90%</div>
+                        <div class="progress-label">自信的笑</div>
+                    </div>
+                </div>
+                
+                <div class="training-action">
+                    <button class="start-btn pulse">
+                        <span class="icon">▶️</span> 继续练习
+                    </button>
+                </div>
+            </div>
+            
+            <h2 class="section-title">热门笑容</h2>
+            <div class="smile-cards">
+                <div class="smile-card">
+                    <div class="smile-icon">😊</div>
+                    <div class="smile-name">发自内心的笑</div>
+                    <div class="smile-count">已练习 10 次</div>
+                </div>
+                <div class="smile-card">
+                    <div class="smile-icon">😌</div>
+                    <div class="smile-name">安慰的笑</div>
+                    <div class="smile-count">已练习 8 次</div>
+                </div>
+                <div class="smile-card">
+                    <div class="smile-icon">😏</div>
+                    <div class="smile-name">自信的笑</div>
+                    <div class="smile-count">已练习 12 次</div>
+                </div>
+                <div class="smile-card">
+                    <div class="smile-icon">😄</div>
+                    <div class="smile-name">开怀大笑</div>
+                    <div class="smile-count">已练习 7 次</div>
+                </div>
+            </div>
+            
+            <div class="special-offer float">
+                <div class="offer-content">
+                    <div class="offer-title">
+                        <span class="icon">🎁</span> 专属优惠
+                    </div>
+                    <div class="offer-description">
+                        升级至年度会员，即可解锁所有38种笑容训练和专家一对一咨询服务！
+                    </div>
+                    <button class="offer-button">了解详情</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航栏 -->
+        <div class="bottom-nav">
+            <div class="nav-item active">
+                <div class="nav-icon">🏠</div>
+                <div>首页</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">📚</div>
+                <div>练习</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">📊</div>
+                <div>数据</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">👨‍👩‍👧‍👦</div>
+                <div>社区</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">👤</div>
+                <div>我的</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

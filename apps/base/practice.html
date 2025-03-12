@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38种笑容训练 - 笑容练习</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f2f2f7;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* 魔幻风格设计 */
+        :root {
+            --primary-color: #6a11cb;
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-color: #2575fc;
+            --accent-color: #fd5e53;
+            --text-color: #2c3e50;
+            --light-text: #ffffff;
+            --border-radius: 16px;
+            --small-radius: 8px;
+            --shadow: 0 8px 16px rgba(106, 17, 203, 0.1);
+            --spacing: 16px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 状态栏 */
+        .status-bar {
+            height: 44px;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing);
+            color: var(--light-text);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-bar .time {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .status-bar .battery {
+            display: flex;
+            align-items: center;
+        }
+        
+        .battery-icon {
+            width: 20px;
+            height: 10px;
+            border: 1px solid white;
+            border-radius: 2px;
+            margin-left: 5px;
+            position: relative;
+        }
+        
+        .battery-icon:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 4px;
+            background-color: white;
+            border-radius: 1px;
+        }
+        
+        /* 头部区域 */
+        .header {
+            padding: var(--spacing);
+            background-color: white;
+            border-bottom: 1px solid #e1e1e1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .back-button {
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+        
+        .page-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .header-right {
+            width: 20px;
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--spacing);
+            background-color: #f9f9fa;
+        }
+        
+        /* 笑容练习部分 */
+        .practice-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .practice-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: var(--spacing);
+            position: relative;
+        }
+        
+        .practice-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .practice-title span {
+            margin-right: 8px;
+        }
+        
+        .practice-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .practice-content {
+            padding: var(--spacing);
+        }
+        
+        .video-placeholder {
+            background-color: #f0f0f0;
+            height: 200px;
+            border-radius: var(--small-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-play-button {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            font-size: 24px;
+            color: var(--primary-color);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .instruction-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+        
+        .instruction-step {
+            display: flex;
+            margin-bottom: 12px;
+        }
+        
+        .step-number {
+            width: 24px;
+            height: 24px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            font-size: 14px;
+            color: #666;
+            flex: 1;
+        }
+        
+        .separator {
+            height: 1px;
+            background-color: #eee;
+            margin: var(--spacing) 0;
+        }
+        
+        .tips-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .tips-title i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+        
+        .tips-list {
+            list-style: none;
+        }
+        
+        .tips-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .tips-list li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 18px;
+            line-height: 1;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing);
+            margin-top: var(--spacing);
+        }
+        
+        .action-button {
+            flex: 1;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: var(--small-radius);
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(106, 17, 203, 0.2);
+        }
+        
+        .action-button.secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            box-shadow: none;
+        }
+        
+        .action-button i {
+            margin-right: 8px;
+        }
+        
+        .progress-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            margin-bottom: var(--spacing);
+            box-shadow: var(--shadow);
+        }
+        
+        .progress-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+        
+        .progress-bar-container {
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+            width: 65%;
+        }
+        
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* 底部导航栏 */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 12px var(--spacing);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #999;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+            position: relative;
+        }
+        
+        .nav-item.active .nav-icon:before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, rgba(106, 17, 203, 0.1), transparent);
+            border-radius: 50%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="signal">
+                <i class="signal-icon">📶</i>
+            </div>
+            <div class="time">9:41</div>
+            <div class="battery">
+                100% <div class="battery-icon"></div>
+            </div>
+        </div>
+        
+        <!-- 头部 -->
+        <div class="header">
+            <div class="back-button">←</div>
+            <h1 class="page-title">笑容练习</h1>
+            <div class="header-right"></div>
+        </div>
+        
+        <!-- 主要内容区域 -->
+        <div class="main-content">
+            <div class="progress-section">
+                <h2 class="progress-title">当前进度</h2>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="progress-stats">
+                    <span>已完成: 15/38种笑容</span>
+                    <span>总进度: 65%</span>
+                </div>
+            </div>
+            
+            <div class="practice-card">
+                <div class="practice-header">
+                    <h2 class="practice-title">
+                        <span>😊</span> 发自内心的笑
+                    </h2>
+                    <p class="practice-description">适用于表达真诚的友好和欢迎</p>
+                </div>
+                
+                <div class="practice-content">
+                    <div class="video-placeholder">
+                        <div class="video-play-button">▶</div>
+                    </div>
+                    
+                    <h3 class="instruction-title">练习步骤</h3>
+                    
+                    <div class="instruction-step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">回忆一个能让你感到开心的事情或画面，让笑容自然地流露出来</div>
+                    </div>
+                    
+                    <div class="instruction-step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">让你的嘴角自然上扬，眼角形成细微的纹路，展现出眼睛在笑</div>
+                    </div>
+                    
+                    <div class="instruction-step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">保持面部肌肉放松，避免表情僵硬或过度用力</div>
+                    </div>
+                    
+                    <div class="instruction-step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">对着镜子练习，留意你的表情是否显得自然和真诚</div>
+                    </div>
+                    
+                    <div class="separator"></div>
+                    
+                    <h3 class="tips-title">
+                        <i>💡</i> 练习小贴士
+                    </h3>
+                    
+                    <ul class="tips-list">
+                        <li>真诚的笑容不仅是嘴角的上扬，更是眼睛在笑</li>
+                        <li>练习时避免过度用力，保持自然是关键</li>
+                        <li>在日常社交中多加练习，逐渐内化为自然表达</li>
+                        <li>如果感到笑容僵硬，可以先深呼吸放松面部肌肉</li>
+                    </ul>
+                    
+                    <div class="action-buttons">
+                        <button class="action-button">
+                            <i>📷</i> 开始练习
+                        </button>
+                        <button class="action-button secondary">
+                            <i>📝</i> 记录笔记
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航栏 -->
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <div class="nav-icon">🏠</div>
+                <div>首页</div>
+            </div>
+            <div class="nav-item active">
+                <div class="nav-icon">📚</div>
+                <div>练习</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">📊</div>
+                <div>数据</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">👨‍👩‍👧‍👦</div>
+                <div>社区</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">👤</div>
+                <div>我的</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

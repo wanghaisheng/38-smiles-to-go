@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38种笑容训练 - 社区</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f2f2f7;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* 魔幻风格设计 */
+        :root {
+            --primary-color: #6a11cb;
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-color: #2575fc;
+            --accent-color: #fd5e53;
+            --text-color: #2c3e50;
+            --light-text: #ffffff;
+            --border-radius: 16px;
+            --small-radius: 8px;
+            --shadow: 0 8px 16px rgba(106, 17, 203, 0.1);
+            --spacing: 16px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 状态栏 */
+        .status-bar {
+            height: 44px;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing);
+            color: var(--light-text);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-bar .time {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .status-bar .battery {
+            display: flex;
+            align-items: center;
+        }
+        
+        .battery-icon {
+            width: 20px;
+            height: 10px;
+            border: 1px solid white;
+            border-radius: 2px;
+            margin-left: 5px;
+            position: relative;
+        }
+        
+        .battery-icon:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 4px;
+            background-color: white;
+            border-radius: 1px;
+        }
+        
+        /* 头部区域 */
+        .header {
+            padding: var(--spacing);
+            background-color: white;
+            border-bottom: 1px solid #e1e1e1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .page-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header-icons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .header-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--primary-color);
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+            border-radius: 20px;
+            padding: 8px 16px;
+        }
+        
+        .search-icon {
+            color: #999;
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .search-input {
+            flex: 1;
+            border: none;
+            background: none;
+            font-size: 14px;
+            color: var(--text-color);
+            outline: none;
+            padding: 4px 0;
+        }
+        
+        .search-input::placeholder {
+            color: #999;
+        }
+        
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            margin-top: 16px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .tab {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #666;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--spacing);
+            background-color: #f9f9fa;
+        }
+        
+        /* 社区帖子部分 */
+        .post-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .post-header {
+            padding: var(--spacing);
+            display: flex;
+            align-items: center;
+        }
+        
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 12px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .post-user-info {
+            flex: 1;
+        }
+        
+        .post-username {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        
+        .post-meta {
+            font-size: 12px;
+            color: #999;
+            display: flex;
+            align-items: center;
+        }
+        
+        .post-time {
+            margin-right: 8px;
+        }
+        
+        .post-badge {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+        
+        .post-more {
+            color: #999;
+            font-size: 18px;
+        }
+        
+        .post-content {
+            padding: 0 var(--spacing) var(--spacing);
+        }
+        
+        .post-text {
+            font-size: 14px;
+            color: var(--text-color);
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .post-tag {
+            background-color: #f0f0f0;
+            color: #666;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+        
+        .post-image {
+            width: 100%;
+            border-radius: var(--small-radius);
+            margin-bottom: 12px;
+            background-color: #f0f0f0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #999;
+        }
+        
+        .post-stats {
+            display: flex;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 12px;
+        }
+        
+        .post-stat {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .post-stat-icon {
+            margin-right: 4px;
+        }
+        
+        .fab-button {
+            position: fixed;
+            bottom: 80px;
+            right: calc(50% - 230px);
+            width: 56px;
+            height: 56px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(106, 17, 203, 0.3);
+            z-index: 100;
+        }
+        
+        /* 底部导航栏 */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 12px var(--spacing);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #999;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+            position: relative;
+        }
+        
+        .nav-item.active .nav-icon:before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, rgba(106, 17, 203, 0.1), transparent);
+            border-radius: 50%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="signal">
+                <i class="signal-icon">📶</i>
+            </div>
+            <div class="time">9:41</div>
+            <div class="battery">
+                100% <div class="battery-icon"></div>
+            </div>
+        </div>
+        
+        <!-- 头部 -->
+        <div class="header">
+            <div class="header-top">
+                <h1 class="page-title">笑容社区</h1>
+                <div class="header-icons">
+                    <div class="header-icon">🔔</div>
+                    <div class="header-icon">✉️</div>
+                </div>
+            </div>
+            
+            <div class="search-bar">
+                <div class="search-icon">🔍</div>
+                <input type="text" class="search-input" placeholder="搜索帖子、用户或话题">
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active">推荐</div>
+                <div class="tab">最新</div>
+                <div class="tab">热门</div>
+                <div class="tab">关注</div>
+                <div class="tab">笑容心得</div>
+                <div class="tab">进步展示</div>
+                <div class="tab">求助讨论</div>
+            </div>
+        </div>
+        
+        <!-- 主要内容区域 -->
+        <div class="main-content">
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar">👩</div>
+                    <div class="post-user-info">
+                        <div class="post-username">林小美</div>
+                        <div class="post-meta">
+                            <span class="post-time">2小时前</span>
+                            <span class="post-badge">笑容达人</span>
+                        </div>
+                    </div>
+                    <div class="post-more">⋯</div>
+                </div>
+                
+                <div class="post-content">
+                    <p class="post-text">今天练习了"感动之余，压低声音的笑"，发现这种笑容在安慰朋友时特别有用，能够传递出温暖和理解。大家有没有类似的体会呢？</p>
+                    
+                    <div class="post-tags">
+                        <div class="post-tag"># 笑容心得</div>
+                        <div class="post-tag"># 感动的笑</div>
+                    </div>
+                    
+                    <div class="post-image">📸 笑容照片</div>
+                    
+                    <div class="post-stats">
+                        <div class="post-stat">
+                            <span class="post-stat-icon">❤️</span> 45
+                        </div>
+                        <div class="post-stat">
+                            <span class="post-stat-icon">💬</span> 12
+                        </div>
+                        <div class="post-stat">
+                            <span class="post-stat-icon">🔄</span> 8
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar">👨</div>
+                    <div class="post-user-info">
+                        <div class="post-username">张志强</div>
+                        <div class="post-meta">
+                            <span class="post-time">昨天</span>
+                            <span class="post-badge">进步之星</span>
+                        </div>
+                    </div>
+                    <div class="post-more">⋯</div>
+                </div>
+                
+                <div class="post-content">
+                    <p class="post-text">使用这个App已经三周了，从一开始的僵硬笑容到现在能够自然地展示"发自内心的笑"和"自信的笑"，真的感觉到了明显的进步！特别是在工作中与客户沟通时，感觉对方的反应也更加积极了。</p>
+                    
+                    <div class="post-tags">
+                        <div class="post-tag"># 进步展示</div>
+                        <div class="post-tag"># 三周成果</div>
+                    </div>
+                    
+                    <div class="post-stats">
+                        <div class="post-stat">
+                            <span class="post-stat-icon">❤️</span> 89
+                        </div>
+                        <div class="post-stat">
+                            <span class="post-stat-icon">💬</span> 23
+                        </div>
+                        <div class="post-stat">
+                            <span class="post-stat-icon">🔄</span> 15
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar">👧</div>
+                    <div class="post-user-info">
+                        <div class="post-username">王小丽</div>
+                        <div class="post-meta">
+                            <span class="post-time">3天前</span>
+                        </div>
+                    </div>
+                    <div class="post-more">⋯</div>
+                </div>
+                
+                <div class="post-content">
+                    <p class="post-text">求助！我在练习"自信的笑"时，总是觉得不够自然，看起来有点做作。有没有好心人分享一下练习这个笑容的技巧或心得？谢谢大家！</p>
+                    
+                    <div class="post-tags">
+                        <div class="post-tag"># 求助</div>
+                        <div class="post-tag"># 自信的笑</div>
+                    </div>
+                    
+                    <div class="post-stats">
+                        <div class="post-stat">
+                            <span class="post-stat-icon">❤️</span> 32
+                        </div>
+                        <div class="post-stat">
+                            <span class="post-stat-icon">💬</span> 41
+                        </div>
+                        <div class="post-stat">
+                            <span class="post-stat-icon">🔄</span> 6
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 浮动按钮 -->
+        <div class="fab-button">+</div>
+        
+        <!-- 底部导航栏 -->
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <div class="nav-icon">🏠</div>
+                <div>首页</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">📚</div>
+                <div>练习</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">📊</div>
+                <div>数据</div>
+            </div>
+            <div class="nav-item active">
+                <div class="nav-icon">👨‍👩‍👧‍👦</div>
+                <div>社区</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">👤</div>
+                <div>我的</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

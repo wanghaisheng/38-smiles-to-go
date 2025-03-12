@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38种笑容训练 - 订阅</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f2f2f7;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* 魔幻风格设计 */
+        :root {
+            --primary-color: #6a11cb;
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-color: #2575fc;
+            --accent-color: #fd5e53;
+            --text-color: #2c3e50;
+            --light-text: #ffffff;
+            --border-radius: 16px;
+            --small-radius: 8px;
+            --shadow: 0 8px 16px rgba(106, 17, 203, 0.1);
+            --spacing: 16px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        /* 状态栏 */
+        .status-bar {
+            height: 44px;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing);
+            color: var(--light-text);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-bar .time {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .status-bar .battery {
+            display: flex;
+            align-items: center;
+        }
+        
+        .battery-icon {
+            width: 20px;
+            height: 10px;
+            border: 1px solid white;
+            border-radius: 2px;
+            margin-left: 5px;
+            position: relative;
+        }
+        
+        .battery-icon:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 4px;
+            background-color: white;
+            border-radius: 1px;
+        }
+        
+        /* 头部区域 */
+        .header {
+            padding: var(--spacing);
+            text-align: center;
+            background: var(--primary-gradient);
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--spacing);
+            background-color: #f9f9fa;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 订阅卡片 */
+        .subscription-cards {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing);
+            margin-bottom: var(--spacing);
+        }
+        
+        .subscription-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing);
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .subscription-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(106, 17, 203, 0.15);
+        }
+        
+        .subscription-card.popular {
+            border: 2px solid var(--primary-color);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .subscription-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing);
+        }
+        
+        .subscription-radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            margin-right: 12px;
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .subscription-card.selected .subscription-radio:after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .subscription-title {
+            flex: 1;
+        }
+        
+        .subscription-title h3 {
+            font-size: 18px;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+        
+        .subscription-price {
+            text-align: right;
+            min-width: 80px;
+        }
+        
+        .price-amount {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .price-period {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        .subscription-content {
+            padding-left: 32px;
+        }
+        
+        .subscription-save {
+            display: inline-block;
+            background-color: rgba(106, 17, 203, 0.1);
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: var(--border-radius-sm);
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .subscription-features {
+            margin-top: 12px;
+        }
+        
+        .subscription-features li {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .subscription-features li:before {
+            content: '✓';
+            color: var(--primary-color);
+            margin-right: 8px;
+            font-weight: 700;
+        }
+        
+        /* 订阅按钮 */
+        .subscription-action {
+            margin-top: auto;
+            padding: var(--spacing);
+        }
+        
+        .subscribe-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.2);
+        }
+        
+        /* 安全信息 */
+        .security-info {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-top: var(--spacing);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .security-icons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .security-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            font-size: 10px;
+        }
+        
+        /* 底部链接 */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: var(--spacing);
+            font-size: 12px;
+        }
+        
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        /* 动画和特效 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="signal">
+                <i class="signal-icon">📶</i>
+            </div>
+            <div class="time">9:41</div>
+            <div class="battery">
+                100% <div class="battery-icon"></div>
+            </div>
+        </div>
+        
+        <!-- 头部区域 -->
+        <div class="header">
+            <h1>解锁完整功能</h1>
+            <p>订阅并体验所有38种专业笑容训练</p>
+        </div>
+        
+        <!-- 主要内容区域 -->
+        <div class="main-content">
+            <div class="subscription-cards">
+                <div class="subscription-card">
+                    <div class="subscription-header">
+                        <div class="subscription-radio"></div>
+                        <div class="subscription-title">
+                            <h3>月度计划</h3>
+                        </div>
+                        <div class="subscription-price">
+                            <div class="price-amount">¥39</div>
+                            <div class="price-period">/月</div>
+                        </div>
+                    </div>
+                    <div class="subscription-content">
+                        <div class="subscription-features">
+                            <ul>
+                                <li>38种专业笑容训练</li>
+                                <li>AI笑容分析与反馈</li>
+                                <li>进度跟踪与统计</li>
+                                <li>社区交流功能</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subscription-card popular selected">
+                    <div class="popular-tag">最受欢迎</div>
+                    <div class="subscription-header">
+                        <div class="subscription-radio"></div>
+                        <div class="subscription-title">
+                            <h3>年度计划</h3>
+                        </div>
+                        <div class="subscription-price">
+                            <div class="price-amount">¥299</div>
+                            <div class="price-period">/年</div>
+                        </div>
+                    </div>
+                    <div class="subscription-content">
+                        <div class="subscription-save">省36%</div>
+                        <div class="subscription-features">
+                            <ul>
+                                <li>38种专业笑容训练</li>
+                                <li>AI笑容分析与反馈</li>
+                                <li>进度跟踪与统计</li>
+                                <li>社区交流功能</li>
+                                <li>情境模拟训练</li>
+                                <li>专家一对一咨询(2次)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subscription-card">
+                    <div class="subscription-header">
+                        <div class="subscription-radio"></div>
+                        <div class="subscription-title">
+                            <h3>终身计划</h3>
+                        </div>
+                        <div class="subscription-price">
+                            <div class="price-amount">¥499</div>
+                            <div class="price-period">一次性</div>
+                        </div>
+                    </div>
+                    <div class="subscription-content">
+                        <div class="subscription-features">
+                            <ul>
+                                <li>38种专业笑容训练</li>
+                                <li>AI笑容分析与反馈</li>
+                                <li>进度跟踪与统计</li>
+                                <li>社区交流功能</li>
+                                <li>情境模拟训练</li>
+                                <li>专家一对一咨询(5次)</li>
+                                <li>未来所有功能更新</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subscription-action">
+                <button class="subscribe-btn pulse" onclick="window.location.href='../../home.html'">立即订阅</button>
+            </div>
+            
+            <div class="security-info">
+                <div class="security-icons">
+                    <div class="security-icon">🔒</div>
+                    <div class="security-icon">💳</div>
+                    <div class="security-icon">✓</div>
+                </div>
+                <p>安全支付 · 随时可取消 · 7天内不满意全额退款</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">隐私政策</a>
+                <a href="#">服务条款</a>
+                <a href="#">恢复购买</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 选择订阅计划
+        document.querySelectorAll('.subscription-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // 移除所有卡片的选中状态
+                document.querySelectorAll('.subscription-card').forEach(c => {
+                    c.classList.remove('selected');
+                });
+                
+                // 为点击的卡片添加选中状态
+                this.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>

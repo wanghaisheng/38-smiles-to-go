@@ -1,132 +1,625 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="A mobile simulator designed to demonstrate mobile interface design.">
-  <meta name="keywords" content="mobile, simulator, mobile design, mobile app">
-  <meta name="author" content="Your Name or Company">
-  <meta http-equiv="Content-Language" content="en">
-
-  <!-- Canonical Link -->
-  <link rel="canonical" href="https://www.yourwebsite.com/pc-simulator" />
-
-  <!-- Open Graph for Social Media -->
-  <meta property="og:title" content="PC Simulator">
-  <meta property="og:description" content="A mobile simulator designed to demonstrate mobile interface design.">
-  <meta property="og:image" content="https://www.yourwebsite.com/pc-simulator-image.jpg">
-  <meta property="og:url" content="https://www.yourwebsite.com/pc-simulator">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PC Simulator">
-  <meta name="twitter:description" content="A mobile simulator designed to demonstrate mobile interface design.">
-  <meta name="twitter:image" content="https://www.yourwebsite.com/pc-simulator-image.jpg">
-  <meta name="twitter:creator" content="@yourtwitterhandle">
-
-  <!-- Favicon -->
-  <link rel="icon" href="https://www.yourwebsite.com/favicon.ico" type="image/x-icon">
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'UA-XXXXX-Y');
-  </script>
-
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y) {
-      window.clarity=window.clarity||function(){(clarity.q=clarity.q||[]).push(arguments)};
-      clarity('set', 'anonymizeIP', true);
-      i=l.createElement('script');i.async=1;i.src=r;i.type='text/javascript';
-      t=l.getElementsByTagName('script')[0];t.parentNode.insertBefore(i,t);
-    })(document,window,'script','https://www.clarity.ms/tag/XXXXXX');
-  </script>
-
-  <title>PC Simulator</title>
-
-  <style>
-    /* Global Styles */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
-
-    .mobile-container {
-      width: 360px;
-      height: 640px;
-      border: 16px solid black;
-      border-radius: 16px;
-      background-color: #fff;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .content {
-      font-size: 1.2rem;
-      color: #333;
-    }
-
-    /* Adjustments for PC */
-    @media (min-width: 768px) {
-      .mobile-container {
-        width: 600px;
-        height: 1000px;
-      }
-
-      .content {
-        font-size: 1.5rem;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .mobile-container {
-        width: 800px;
-        height: 1400px;
-      }
-
-      .content {
-        font-size: 1.8rem;
-      }
-    }
-
-    /* Additional responsiveness for larger screens */
-    @media (min-width: 1200px) {
-      body {
-        justify-content: flex-start;
-      }
-
-      .mobile-container {
-        margin-top: 50px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38种笑容训练 - 掌握社交魔法的关键</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/i18n.js" defer></script>
+    <script src="js/main.js" defer></script>
 </head>
-
 <body>
-  <div class="mobile-container">
-    <div class="content">
-      <p>Mobile Simulator Screen</p>
-      <p>PC Version: Adjusted for larger screens.</p>
-    </div>
-  </div>
-</body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/logo.svg" alt="38种笑容训练logo">
+                <h1 data-i18n="app_name">38种笑容训练</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#features" data-i18n="nav_features">功能</a></li>
+                    <li><a href="#screenshots" data-i18n="nav_screenshots">截图</a></li>
+                    <li><a href="#testimonials" data-i18n="nav_testimonials">用户评价</a></li>
+                    <li><a href="#pricing" data-i18n="nav_pricing">订阅</a></li>
+                    <li class="language-selector">
+                        <select id="language-select">
+                            <option value="zh">中文</option>
+                            <option value="en">English</option>
+                        </select>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
 
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-i18n="hero_title">掌握38种笑容，成为社交场合的魔法师</h1>
+                <p data-i18n="hero_subtitle">通过专业的笑容训练，轻松应对各种社交场景，让你的魅力倍增！</p>
+                <div class="hero-cta">
+                    <a href="#download" class="btn btn-primary pulse-btn" data-i18n="cta_download">立即下载</a>
+                    <a href="#demo" class="btn btn-secondary" data-i18n="cta_try_demo">体验示例</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <img src="img/hero-app-preview.svg" alt="38种笑容训练App界面预览">
+                </div>
+            </div>
+        </div>
+        <div class="floating-elements">
+            <div class="floating-emoji smile-1">😊</div>
+            <div class="floating-emoji smile-2">😄</div>
+            <div class="floating-emoji smile-3">😁</div>
+            <div class="floating-emoji smile-4">🙂</div>
+            <div class="floating-emoji smile-5">😏</div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="container">
+            <div class="users-count">
+                <i class="fas fa-users"></i>
+                <span class="counter">250,000+</span>
+                <span data-i18n="social_users">活跃用户</span>
+            </div>
+            <div class="rating">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="rating-value">4.8/5</span>
+                <span data-i18n="social_rating">用户评分</span>
+            </div>
+            <div class="featured">
+                <span data-i18n="social_featured">荣登推荐榜单：</span>
+                <div class="featured-logos">
+                    <img src="img/featured-1.svg" alt="App Store精选">
+                    <img src="img/featured-2.svg" alt="Google Play优质应用">
+                    <img src="img/featured-3.svg" alt="心理健康推荐应用">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title" data-i18n="features_title">强大功能，让笑容训练变得简单有趣</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-smile-beam"></i>
+                    </div>
+                    <h3 data-i18n="feature1_title">38种专业笑容训练</h3>
+                    <p data-i18n="feature1_desc">详细的视频教程和图文指导，手把手教你掌握38种适用于不同场合的专业笑容。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <h3 data-i18n="feature2_title">AI笑容分析</h3>
+                    <p data-i18n="feature2_desc">使用前置摄像头，AI实时分析你的笑容，给出专业评分和改进建议。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-i18n="feature3_title">进度追踪</h3>
+                    <p data-i18n="feature3_desc">详细记录你的练习情况，可视化展示进步轨迹，激励持续练习。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 data-i18n="feature4_title">社区互动</h3>
+                    <p data-i18n="feature4_desc">与其他学习者交流心得，分享成果，互相鼓励，共同进步。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 data-i18n="feature5_title">情境模拟</h3>
+                    <p data-i18n="feature5_desc">模拟各种社交场景，练习在真实情境中运用不同笑容，提升应用能力。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 data-i18n="feature6_title">专家指导</h3>
+                    <p data-i18n="feature6_desc">顶级微笑教练和心理学家提供的专业课程和个性化咨询服务。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pain-points">
+        <div class="container">
+            <h2 class="section-title" data-i18n="pain_title">笑容，比你想象的更重要</h2>
+            <div class="pain-points-grid">
+                <div class="pain-point">
+                    <div class="pain-icon">
+                        <i class="fas fa-frown"></i>
+                    </div>
+                    <h3 data-i18n="pain1_title">社交尴尬</h3>
+                    <p data-i18n="pain1_desc">不知道何时该笑、如何笑，导致社交场合频频出现尴尬瞬间？</p>
+                </div>
+                <div class="pain-point">
+                    <div class="pain-icon">
+                        <i class="fas fa-dizzy"></i>
+                    </div>
+                    <h3 data-i18n="pain2_title">表达困难</h3>
+                    <p data-i18n="pain2_desc">想表达友好但笑容僵硬，想表达自信但笑容显得做作？</p>
+                </div>
+                <div class="pain-point">
+                    <div class="pain-icon">
+                        <i class="fas fa-sad-tear"></i>
+                    </div>
+                    <h3 data-i18n="pain3_title">误解困扰</h3>
+                    <p data-i18n="pain3_desc">笑容不当导致被误解，甚至影响人际关系和职业发展？</p>
+                </div>
+            </div>
+            <div class="solution">
+                <h3 data-i18n="solution_title">不必再烦恼！</h3>
+                <p data-i18n="solution_desc">38种笑容训练带你掌握各种场合的完美笑容表达，从此告别社交尴尬。</p>
+                <a href="#download" class="btn btn-primary" data-i18n="solution_cta">开始你的笑容训练</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="screenshots" class="screenshots">
+        <div class="container">
+            <h2 class="section-title" data-i18n="screenshots_title">App截图展示</h2>
+            <p class="section-subtitle" data-i18n="screenshots_subtitle">精心设计的界面，让笑容训练更直观、更有趣</p>
+            
+            <div class="screenshot-tabs">
+                <button class="tab-btn active" data-tab="base">魔幻风格</button>
+            </div>
+
+            <div class="tab-content" id="base">
+                <div class="screenshots-slider">
+                    <div class="screenshot-card">
+                        <div class="phone-frame">
+                            <iframe src="apps/base/home.html" frameborder="0"></iframe>
+                        </div>
+                        <h3 data-i18n="screen1_title">首页界面</h3>
+                        <p data-i18n="screen1_desc">个性化的笑容推荐和练习进度一目了然</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <div class="phone-frame">
+                            <iframe src="apps/base/onboarding-preview/step1.html" frameborder="0"></iframe>
+                        </div>
+                        <h3 data-i18n="screen2_title">新手引导</h3>
+                        <p data-i18n="screen2_desc">简单直观的引导流程，快速了解App的核心功能</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <div class="phone-frame">
+                            <iframe src="apps/base/practice.html" frameborder="0"></iframe>
+                        </div>
+                        <h3 data-i18n="screen3_title">笑容练习</h3>
+                        <p data-i18n="screen3_desc">图文并茂的练习指导，让你轻松掌握每种笑容</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <div class="phone-frame">
+                            <iframe src="apps/base/analysis.html" frameborder="0"></iframe>
+                        </div>
+                        <h3 data-i18n="screen4_title">AI分析</h3>
+                        <p data-i18n="screen4_desc">智能分析你的笑容，给出专业评分和建议</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <div class="phone-frame">
+                            <iframe src="apps/base/community.html" frameborder="0"></iframe>
+                        </div>
+                        <h3 data-i18n="screen5_title">社区</h3>
+                        <p data-i18n="screen5_desc">与志同道合的学习者交流，分享你的进步</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <div class="phone-frame">
+                            <iframe src="apps/base/onboarding-preview/paywall-preview/subscription.html" frameborder="0"></iframe>
+                        </div>
+                        <h3 data-i18n="screen6_title">订阅界面</h3>
+                        <p data-i18n="screen6_desc">灵活的订阅选项，满足你的不同需求</p>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slider-dots"></div>
+                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <div class="demo-link">
+                <a href="apps/base/onboarding-preview/step1.html" class="btn btn-secondary" target="_blank" data-i18n="demo_cta">体验完整App演示</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-i18n="testimonials_title">用户的真实反馈</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="img/avatar-1.svg" alt="用户头像">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text" data-i18n="testimonial1_text">"以前参加社交活动总是紧张，不知道该怎么笑。使用这个App一个月后，我现在能自如地应对各种社交场合，同事们都说我更有魅力了！"</p>
+                        <div class="testimonial-author">
+                            <span class="author-name" data-i18n="testimonial1_name">李小明</span>
+                            <span class="author-title" data-i18n="testimonial1_title">市场营销经理</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="img/avatar-2.svg" alt="用户头像">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text" data-i18n="testimonial2_text">"作为一名销售，笑容是我的职业武器。这个App帮我掌握了各种笑容技巧，客户满意度提高了40%，业绩也跟着上升！值得每一分钱！"</p>
+                        <div class="testimonial-author">
+                            <span class="author-name" data-i18n="testimonial2_name">张晓华</span>
+                            <span class="author-title" data-i18n="testimonial2_title">资深销售顾问</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">
+                        <img src="img/avatar-3.svg" alt="用户头像">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="testimonial-text" data-i18n="testimonial3_text">"我是一名教师，通过这个App学习了如何用笑容更好地与学生沟通。课堂气氛变得更活跃，学生们也更愿意与我交流了。非常推荐！"</p>
+                        <div class="testimonial-author">
+                            <span class="author-name" data-i18n="testimonial3_name">王老师</span>
+                            <span class="author-title" data-i18n="testimonial3_title">高中英语教师</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <button class="prev-testimonial"><i class="fas fa-chevron-left"></i></button>
+                <div class="testimonial-dots"></div>
+                <button class="next-testimonial"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" data-i18n="how_title">如何使用38种笑容训练</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 data-i18n="step1_title">下载安装</h3>
+                    <p data-i18n="step1_desc">从App Store或Google Play免费下载并安装应用</p>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 data-i18n="step2_title">完成评估</h3>
+                    <p data-i18n="step2_desc">进行笑容评估，了解你的笑容现状和提升空间</p>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 data-i18n="step3_title">制定计划</h3>
+                    <p data-i18n="step3_desc">根据评估结果，获取个性化的笑容训练计划</p>
+                </div>
+                <div class="step-arrow">
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3 data-i18n="step4_title">每日练习</h3>
+                    <p data-i18n="step4_desc">每天花10分钟按照指导进行笑容练习，持续提升</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title" data-i18n="pricing_title">选择适合你的订阅计划</h2>
+            <p class="section-subtitle" data-i18n="pricing_subtitle">所有计划均可使用全部功能，随时可取消</p>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 data-i18n="plan1_title">月度计划</h3>
+                        <div class="pricing-price">
+                            <span class="currency">¥</span>
+                            <span class="amount">39</span>
+                            <span class="period" data-i18n="plan_monthly">/月</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature1">38种专业笑容训练</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature2">AI笑容分析与反馈</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature3">进度跟踪与统计</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature4">社区交流功能</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature5">情境模拟训练</span></li>
+                        </ul>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#download" class="btn btn-outline" data-i18n="plan_cta">开始订阅</a>
+                    </div>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-tag" data-i18n="plan_popular">最受欢迎</div>
+                    <div class="pricing-header">
+                        <h3 data-i18n="plan2_title">年度计划</h3>
+                        <div class="pricing-price">
+                            <span class="currency">¥</span>
+                            <span class="amount">299</span>
+                            <span class="period" data-i18n="plan_yearly">/年</span>
+                        </div>
+                        <div class="pricing-save" data-i18n="plan2_save">省36%</div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature1">38种专业笑容训练</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature2">AI笑容分析与反馈</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature3">进度跟踪与统计</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature4">社区交流功能</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature5">情境模拟训练</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature6">专家一对一咨询(2次)</span></li>
+                        </ul>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#download" class="btn btn-primary" data-i18n="plan_cta">开始订阅</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 data-i18n="plan3_title">终身计划</h3>
+                        <div class="pricing-price">
+                            <span class="currency">¥</span>
+                            <span class="amount">499</span>
+                            <span class="period" data-i18n="plan_lifetime">一次性付款</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature1">38种专业笑容训练</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature2">AI笑容分析与反馈</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature3">进度跟踪与统计</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature4">社区交流功能</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature5">情境模拟训练</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature6">专家一对一咨询(5次)</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="plan_feature7">未来所有功能更新</span></li>
+                        </ul>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#download" class="btn btn-outline" data-i18n="plan_cta">开始订阅</a>
+                    </div>
+                </div>
+            </div>
+            <div class="pricing-guarantee">
+                <i class="fas fa-shield-alt"></i>
+                <p data-i18n="pricing_guarantee">100%满意保证：如果你在使用7天内不满意，我们将全额退款，无需任何理由。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="download">
+        <div class="container">
+            <h2 class="section-title" data-i18n="download_title">立即下载，开启你的笑容魔法之旅</h2>
+            <p class="section-subtitle" data-i18n="download_subtitle">支持iOS和Android平台，随时随地练习</p>
+            <div class="download-buttons">
+                <a href="#" class="download-btn apple">
+                    <i class="fab fa-apple"></i>
+                    <span>
+                        <small data-i18n="download_on">下载自</small>
+                        <strong>App Store</strong>
+                    </span>
+                </a>
+                <a href="#" class="download-btn android">
+                    <i class="fab fa-google-play"></i>
+                    <span>
+                        <small data-i18n="download_on">下载自</small>
+                        <strong>Google Play</strong>
+                    </span>
+                </a>
+            </div>
+            <div class="countdown-timer">
+                <p data-i18n="countdown_title">限时优惠：首月订阅50%折扣</p>
+                <div class="timer">
+                    <div class="timer-item">
+                        <span class="days">2</span>
+                        <span data-i18n="timer_days">天</span>
+                    </div>
+                    <div class="timer-divider">:</div>
+                    <div class="timer-item">
+                        <span class="hours">14</span>
+                        <span data-i18n="timer_hours">时</span>
+                    </div>
+                    <div class="timer-divider">:</div>
+                    <div class="timer-item">
+                        <span class="minutes">36</span>
+                        <span data-i18n="timer_minutes">分</span>
+                    </div>
+                    <div class="timer-divider">:</div>
+                    <div class="timer-item">
+                        <span class="seconds">07</span>
+                        <span data-i18n="timer_seconds">秒</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title" data-i18n="faq_title">常见问题</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq1_question">我需要多长时间才能看到效果？</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faq1_answer">大多数用户在坚持练习2-3周后就能看到明显效果。每天只需10分钟的练习，就能逐步掌握不同的笑容技巧。当然，效果因人而异，持续练习是关键。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq2_question">我可以在多个设备上使用同一个账号吗？</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faq2_answer">是的，你可以在不同设备上使用同一个账号登录，你的练习记录和进度会自动同步。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq3_question">如何取消订阅？</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faq3_answer">你可以随时在App内的"设置">"订阅管理"中取消订阅，或者通过App Store/Google Play的订阅管理页面取消。取消后，你仍可以使用服务直到当前订阅期结束。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq4_question">App支持哪些语言？</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faq4_answer">目前支持中文和英文，我们正在努力增加更多语言支持。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq5_question">练习需要特殊设备吗？</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faq5_answer">不需要，只要你的设备有前置摄像头即可。我们建议在光线充足的环境中练习，以获得更准确的AI反馈。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="img/logo.svg" alt="38种笑容训练logo">
+                    <h2 data-i18n="app_name">38种笑容训练</h2>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-middle">
+                <div class="footer-column">
+                    <h3 data-i18n="footer_company">公司</h3>
+                    <ul>
+                        <li><a href="#" data-i18n="footer_about">关于我们</a></li>
+                        <li><a href="#" data-i18n="footer_careers">加入我们</a></li>
+                        <li><a href="#" data-i18n="footer_press">媒体报道</a></li>
+                        <li><a href="#" data-i18n="footer_contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-i18n="footer_resources">资源</h3>
+                    <ul>
+                        <li><a href="#" data-i18n="footer_blog">笑容博客</a></li>
+                        <li><a href="#" data-i18n="footer_experts">专家团队</a></li>
+                        <li><a href="#" data-i18n="footer_research">研究报告</a></li>
+                        <li><a href="#" data-i18n="footer_help">帮助中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-i18n="footer_legal">法律</h3>
+                    <ul>
+                        <li><a href="#" data-i18n="footer_terms">使用条款</a></li>
+                        <li><a href="#" data-i18n="footer_privacy">隐私政策</a></li>
+                        <li><a href="#" data-i18n="footer_cookies">Cookie政策</a></li>
+                        <li><a href="#" data-i18n="footer_gdpr">GDPR合规</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 data-i18n="footer_app">应用</h3>
+                    <ul>
+                        <li><a href="#" data-i18n="footer_ios">iOS版本</a></li>
+                        <li><a href="#" data-i18n="footer_android">Android版本</a></li>
+                        <li><a href="#" data-i18n="footer_updates">更新日志</a></li>
+                        <li><a href="#" data-i18n="footer_feedback">反馈建议</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright" data-i18n="footer_copyright"> 2023 38种笑容训练 保留所有权利</p>
+                <div class="footer-language">
+                    <select id="footer-language-select">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cookie-banner">
+        <div class="container">
+            <p data-i18n="cookie_notice">我们使用Cookie来改善您的体验。继续浏览即表示您同意我们的Cookie政策。</p>
+            <div class="cookie-buttons">
+                <button class="btn btn-outline cookie-settings" data-i18n="cookie_settings">设置</button>
+                <button class="btn btn-primary cookie-accept" data-i18n="cookie_accept">接受</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+</body>
 </html>

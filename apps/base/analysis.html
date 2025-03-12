@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38种笑容训练 - AI笑容分析</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f2f2f7;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        /* 魔幻风格设计 */
+        :root {
+            --primary-color: #6a11cb;
+            --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-color: #2575fc;
+            --accent-color: #fd5e53;
+            --text-color: #2c3e50;
+            --light-text: #ffffff;
+            --border-radius: 16px;
+            --small-radius: 8px;
+            --shadow: 0 8px 16px rgba(106, 17, 203, 0.1);
+            --spacing: 16px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 状态栏 */
+        .status-bar {
+            height: 44px;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing);
+            color: var(--light-text);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .status-bar .time {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .status-bar .battery {
+            display: flex;
+            align-items: center;
+        }
+        
+        .battery-icon {
+            width: 20px;
+            height: 10px;
+            border: 1px solid white;
+            border-radius: 2px;
+            margin-left: 5px;
+            position: relative;
+        }
+        
+        .battery-icon:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 4px;
+            background-color: white;
+            border-radius: 1px;
+        }
+        
+        /* 头部区域 */
+        .header {
+            padding: var(--spacing);
+            background-color: white;
+            border-bottom: 1px solid #e1e1e1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .back-button {
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+        
+        .page-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .header-right {
+            width: 20px;
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--spacing);
+            background-color: #f9f9fa;
+        }
+        
+        /* AI分析部分 */
+        .analysis-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .analysis-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: var(--spacing);
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .analysis-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-right: 12px;
+        }
+        
+        .analysis-title-container {
+            flex: 1;
+        }
+        
+        .analysis-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .analysis-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .analysis-content {
+            padding: var(--spacing);
+        }
+        
+        .camera-preview {
+            background-color: #f0f0f0;
+            height: 250px;
+            border-radius: var(--small-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .camera-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        
+        .camera-message {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .camera-button {
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--small-radius);
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .result-section {
+            margin-bottom: var(--spacing);
+        }
+        
+        .result-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .result-title i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+        
+        .score-card {
+            background-color: #f9f9fa;
+            border-radius: var(--small-radius);
+            padding: var(--spacing);
+            margin-bottom: var(--spacing);
+            border: 1px solid #eee;
+        }
+        
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .score-label {
+            font-size: 14px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        .score-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .score-bar-container {
+            height: 8px;
+            background-color: #eee;
+            border-radius: 4px;
+            flex: 1;
+            margin: 0 12px;
+            overflow: hidden;
+        }
+        
+        .score-bar {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+        
+        .feedback-card {
+            background-color: #f9f9fa;
+            border-radius: var(--small-radius);
+            padding: var(--spacing);
+            margin-bottom: var(--spacing);
+            border: 1px solid #eee;
+        }
+        
+        .feedback-item {
+            display: flex;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        
+        .feedback-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .feedback-text {
+            font-size: 14px;
+            color: #666;
+            flex: 1;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing);
+            margin-top: var(--spacing);
+        }
+        
+        .action-button {
+            flex: 1;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: var(--small-radius);
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(106, 17, 203, 0.2);
+        }
+        
+        .action-button.secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            box-shadow: none;
+        }
+        
+        .action-button i {
+            margin-right: 8px;
+        }
+        
+        /* 底部导航栏 */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 12px var(--spacing);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #999;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+            position: relative;
+        }
+        
+        .nav-item.active .nav-icon:before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, rgba(106, 17, 203, 0.1), transparent);
+            border-radius: 50%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="signal">
+                <i class="signal-icon">📶</i>
+            </div>
+            <div class="time">9:41</div>
+            <div class="battery">
+                100% <div class="battery-icon"></div>
+            </div>
+        </div>
+        
+        <!-- 头部 -->
+        <div class="header">
+            <div class="back-button">←</div>
+            <h1 class="page-title">AI笑容分析</h1>
+            <div class="header-right"></div>
+        </div>
+        
+        <!-- 主要内容区域 -->
+        <div class="main-content">
+            <div class="analysis-card">
+                <div class="analysis-header">
+                    <div class="analysis-icon">🤖</div>
+                    <div class="analysis-title-container">
+                        <h2 class="analysis-title">AI笑容分析</h2>
+                        <p class="analysis-subtitle">实时分析你的笑容表情，提供专业反馈</p>
+                    </div>
+                </div>
+                
+                <div class="analysis-content">
+                    <div class="camera-preview">
+                        <div class="camera-overlay">
+                            <p class="camera-message">点击开始分析笑容</p>
+                            <button class="camera-button">开启相机</button>
+                        </div>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h3 class="result-title">
+                            <i>📊</i> 分析结果
+                        </h3>
+                        
+                        <div class="score-card">
+                            <div class="score-row">
+                                <span class="score-label">自然度</span>
+                                <div class="score-bar-container">
+                                    <div class="score-bar" style="width: 85%;"></div>
+                                </div>
+                                <span class="score-value">85%</span>
+                            </div>
+                            
+                            <div class="score-row">
+                                <span class="score-label">真诚度</span>
+                                <div class="score-bar-container">
+                                    <div class="score-bar" style="width: 78%;"></div>
+                                </div>
+                                <span class="score-value">78%</span>
+                            </div>
+                            
+                            <div class="score-row">
+                                <span class="score-label">亲和力</span>
+                                <div class="score-bar-container">
+                                    <div class="score-bar" style="width: 92%;"></div>
+                                </div>
+                                <span class="score-value">92%</span>
+                            </div>
+                            
+                            <div class="score-row">
+                                <span class="score-label">表情肌控制</span>
+                                <div class="score-bar-container">
+                                    <div class="score-bar" style="width: 65%;"></div>
+                                </div>
+                                <span class="score-value">65%</span>
+                            </div>
+                            
+                            <div class="score-row">
+                                <span class="score-label">总体评分</span>
+                                <div class="score-bar-container">
+                                    <div class="score-bar" style="width: 80%;"></div>
+                                </div>
+                                <span class="score-value">80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h3 class="result-title">
+                            <i>💡</i> 改进建议
+                        </h3>
+                        
+                        <div class="feedback-card">
+                            <div class="feedback-item">
+                                <div class="feedback-icon">✓</div>
+                                <div class="feedback-text">你的笑容自然且真诚，给人亲近感，这是很好的表现！</div>
+                            </div>
+                            
+                            <div class="feedback-item">
+                                <div class="feedback-icon">✓</div>
+                                <div class="feedback-text">眼角的纹路展现出了"眼睛在笑"，这是真诚笑容的重要特征。</div>
+                            </div>
+                            
+                            <div class="feedback-item">
+                                <div class="feedback-icon">!</div>
+                                <div class="feedback-text">可以稍微放松下颌肌肉，避免笑容看起来有些紧张。</div>
+                            </div>
+                            
+                            <div class="feedback-item">
+                                <div class="feedback-icon">!</div>
+                                <div class="feedback-text">尝试让笑容更加持久和稳定，避免快速消失。</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="action-button">
+                            <i>🔄</i> 重新分析
+                        </button>
+                        <button class="action-button secondary">
+                            <i>📝</i> 保存结果
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航栏 -->
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <div class="nav-icon">🏠</div>
+                <div>首页</div>
+            </div>
+            <div class="nav-item active">
+                <div class="nav-icon">📚</div>
+                <div>练习</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">📊</div>
+                <div>数据</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">👨‍👩‍👧‍👦</div>
+                <div>社区</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">👤</div>
+                <div>我的</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

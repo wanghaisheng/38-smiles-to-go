@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="40" viewBox="0 0 120 40">
+  <rect width="120" height="40" rx="5" fill="#f8f9fa" />
+  <path d="M20,10 C17.2386,10 15,12.2386 15,15 C15,17.7614 17.2386,20 20,20 C22.7614,20 25,17.7614 25,15 C25,12.2386 22.7614,10 20,10 Z M15,22 C15,25 17,28 20,28 C23,28 25,25 25,22 L15,22 Z" fill="#6a11cb" />
+  <text x="35" y="20" font-family="Arial" font-size="10" font-weight="bold" fill="#2c3e50">心理健康推荐应用</text>
+</svg>
+
