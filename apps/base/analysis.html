@@ -508,27 +508,44 @@
         
         <!-- 底部导航栏 -->
         <div class="bottom-nav">
-            <div class="nav-item">
+            <a href="home.html" class="nav-item">
                 <div class="nav-icon">🏠</div>
                 <div>首页</div>
-            </div>
-            <div class="nav-item active">
+            </a>
+            <a href="practice.html" class="nav-item">
                 <div class="nav-icon">📚</div>
                 <div>练习</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="analysis.html" class="nav-item active">
                 <div class="nav-icon">📊</div>
                 <div>数据</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="community.html" class="nav-item">
                 <div class="nav-icon">👨‍👩‍👧‍👦</div>
                 <div>社区</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="subscription.html" class="nav-item">
                 <div class="nav-icon">👤</div>
                 <div>我的</div>
-            </div>
+            </a>
         </div>
     </div>
+    
+    <script>
+        // 修复底部导航栏链接
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (this.getAttribute('href')) {
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+        });
+        
+        // 开启相机按钮点击事件
+        document.querySelector('.camera-button')?.addEventListener('click', function() {
+            alert('相机功能已激活，请对准脸部进行笑容分析。');
+            // 这里应该是实际调用相机API的代码
+        });
+    </script>
 </body>
 </html>

@@ -639,7 +639,7 @@
                 </div>
                 
                 <div class="training-action">
-                    <button class="start-btn pulse">
+                    <button class="start-btn pulse" onclick="window.location.href='practice.html'">
                         <span class="icon">▶️</span> 继续练习
                     </button>
                 </div>
@@ -647,22 +647,22 @@
             
             <h2 class="section-title">热门笑容</h2>
             <div class="smile-cards">
-                <div class="smile-card">
+                <div class="smile-card" onclick="window.location.href='practice.html?id=1'">
                     <div class="smile-icon">😊</div>
                     <div class="smile-name">发自内心的笑</div>
                     <div class="smile-count">已练习 10 次</div>
                 </div>
-                <div class="smile-card">
+                <div class="smile-card" onclick="window.location.href='practice.html?id=7'">
                     <div class="smile-icon">😌</div>
                     <div class="smile-name">安慰的笑</div>
                     <div class="smile-count">已练习 8 次</div>
                 </div>
-                <div class="smile-card">
+                <div class="smile-card" onclick="window.location.href='practice.html?id=11'">
                     <div class="smile-icon">😏</div>
                     <div class="smile-name">自信的笑</div>
                     <div class="smile-count">已练习 12 次</div>
                 </div>
-                <div class="smile-card">
+                <div class="smile-card" onclick="window.location.href='practice.html?id=4'">
                     <div class="smile-icon">😄</div>
                     <div class="smile-name">开怀大笑</div>
                     <div class="smile-count">已练习 7 次</div>
@@ -684,28 +684,57 @@
         
         <!-- 底部导航栏 -->
         <div class="bottom-nav">
-            <div class="nav-item active">
+            <a href="home.html" class="nav-item active">
                 <div class="nav-icon">🏠</div>
                 <div>首页</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="practice.html" class="nav-item">
                 <div class="nav-icon">📚</div>
                 <div>练习</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="analysis.html" class="nav-item">
                 <div class="nav-icon">📊</div>
                 <div>数据</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="community.html" class="nav-item">
                 <div class="nav-icon">👨‍👩‍👧‍👦</div>
                 <div>社区</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="subscription.html" class="nav-item">
                 <div class="nav-icon">👤</div>
                 <div>我的</div>
-            </div>
+            </a>
         </div>
     </div>
+    
+    <script>
+        // 修复底部导航栏链接
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (this.getAttribute('href')) {
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+        });
+        
+        // 实现动态时间显示
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            document.querySelector('.time').textContent = `${hours}:${minutes}`;
+        }
+        
+        // 初始更新时间
+        updateTime();
+        
+        // 每分钟更新时间
+        setInterval(updateTime, 60000);
+        
+        // 特别优惠点击事件
+        document.querySelector('.offer-button').addEventListener('click', function() {
+            window.location.href = 'subscription.html';
+        });
+    </script>
 </body>
 </html>
-

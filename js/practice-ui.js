@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initPracticeUI();
   
   // 监听开始练习按钮点击
-  document.querySelector('.start-btn')?.addEventListener('click', startPractice);
+  document.querySelector('.action-button')?.addEventListener('click', startPractice);
   
   // 监听记录笔记按钮点击
   document.querySelector('.action-button.secondary')?.addEventListener('click', openNoteDialog);
@@ -59,13 +59,18 @@ function updatePracticeUI(smile) {
   }
   
   // 更新适用场景
-  const suitableContainer = document.querySelector('.tips-list')?.parentElement.parentElement;
+  const suitableContainer = document.querySelector('.tips-title')?.parentElement;
   if (suitableContainer) {
-    suitableContainer.innerHTML += `
-      <div class="separator"></div>
-      <h3 class="tips-title"><i>🌟</i> 适用场景</h3>
-      <p class="suitable-text">${smile.suitable}</p>
-    `;
+    const alreadyHasSuitable = suitableContainer.querySelector('.suitable-text');
+    if (!alreadyHasSuitable) {
+      suitableContainer.innerHTML += `
+        <div class="separator"></div>
+        <h3 class="tips-title"><i>🌟</i> 适用场景</h3>
+        <p class="suitable-text">${smile.suitable}</p>
+      `;
+    } else {
+      alreadyHasSuitable.textContent = smile.suitable;
+    }
   }
   
   // 更新进度信息
@@ -76,11 +81,18 @@ function updatePracticeUI(smile) {
 function updateProgressInfo(smileId) {
   const progressStatus = smileAnalysis.getMasterCertificateStatus();
   
-  document.querySelector('.progress-bar')?.style.setProperty('width', `${(progressStatus.progress / progressStatus.required) * 100}%`);
-  document.querySelector('.progress-stats')?.innerHTML = `
-    <span>已完成: ${progressStatus.progress}/${progressStatus.required}种笑容</span>
-    <span>总进度: ${Math.floor((progressStatus.progress / progressStatus.required) * 100)}%</span>
-  `;
+  const progressBar = document.querySelector('.progress-bar');
+  if (progressBar) {
+    progressBar.style.width = `${(progressStatus.progress / progressStatus.required) * 100}%`;
+  }
+  
+  const progressStats = document.querySelector('.progress-stats');
+  if (progressStats) {
+    progressStats.innerHTML = `
+      <span>已完成: ${progressStatus.progress}/${progressStatus.required}种笑容</span>
+      <span>总进度: ${Math.floor((progressStatus.progress / progressStatus.required) * 100)}%</span>
+    `;
+  }
 }
 
 // 开始练习
@@ -93,10 +105,22 @@ async function startPractice() {
   await openCamera();
   
   // 显示相机预览界面
-  document.querySelector('.camera-overlay')?.classList.add('active');
+  const cameraOverlay = document.createElement('div');
+  cameraOverlay.className = 'camera-overlay';
+  cameraOverlay.innerHTML = `
+    <div class="camera-preview">
+      <div class="camera-feed">
+        <video autoplay playsinline></video>
+      </div>
+      <div class="camera-controls">
+        <button class="camera-capture-btn">拍照分析</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(cameraOverlay);
   
   // 监听拍照按钮
-  document.querySelector('.camera-capture-btn')?.addEventListener('click', async () => {
+  cameraOverlay.querySelector('.camera-capture-btn')?.addEventListener('click', async () => {
     // 模拟拍照并获取图像数据
     const imageData = await captureImage();
     
@@ -104,7 +128,7 @@ async function startPractice() {
     const result = await smileAnalysis.analyzeSmile(smileId, imageData);
     
     // 显示分析结果
-    showAnalysisResult(result);
+    showAnalysisResult(result, cameraOverlay);
   });
 }
 
@@ -112,19 +136,6 @@ async function startPractice() {
 async function openCamera() {
   // 实际项目中会调用设备相机API
   console.log('打开相机...');
-  
-  // 模拟相机界面
-  const cameraPreview = document.querySelector('.camera-preview');
-  if (cameraPreview) {
-    cameraPreview.innerHTML = `
-      <div class="camera-feed">
-        <video autoplay playsinline></video>
-      </div>
-      <div class="camera-controls">
-        <button class="camera-capture-btn">拍照分析</button>
-      </div>
-    `;
-  }
   
   // 模拟延迟
   return new Promise(resolve => setTimeout(resolve, 500));
@@ -143,7 +154,7 @@ async function captureImage() {
 }
 
 // 显示分析结果
-function showAnalysisResult(result) {
+function showAnalysisResult(result, cameraOverlay) {
   // 创建结果界面
   const resultUI = `
     <div class="analysis-result">
@@ -169,13 +180,23 @@ function showAnalysisResult(result) {
   `;
   
   // 更新界面
-  document.querySelector('.camera-preview')?.innerHTML = resultUI;
+  cameraOverlay.querySelector('.camera-preview').innerHTML = resultUI;
   
   // 监听按钮事件
-  document.querySelector('.retry-btn')?.addEventListener('click', startPractice);
-  document.querySelector('.continue-btn')?.addEventListener('click', () => {
+  cameraOverlay.querySelector('.retry-btn')?.addEventListener('click', () => {
+    document.body.removeChild(cameraOverlay);
+    startPractice();
+  });
+  
+  cameraOverlay.querySelector('.continue-btn')?.addEventListener('click', () => {
     // 返回主界面或进入下一个笑容练习
-    window.location.href = 'practice.html?id=' + (parseInt(new URLSearchParams(window.location.search).get('id') || '1') + 1);
+    document.body.removeChild(cameraOverlay);
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentId = parseInt(urlParams.get('id') || '1');
+    const nextId = (currentId % 38) + 1; // 循环到下一个笑容ID
+    
+    window.location.href = `practice.html?id=${nextId}`;
   });
 }
 
@@ -184,13 +205,24 @@ function openNoteDialog() {
   // 创建笔记对话框
   const noteDialog = document.createElement('div');
   noteDialog.className = 'note-dialog';
+  noteDialog.style.position = 'fixed';
+  noteDialog.style.top = '0';
+  noteDialog.style.left = '0';
+  noteDialog.style.width = '100%';
+  noteDialog.style.height = '100%';
+  noteDialog.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+  noteDialog.style.display = 'flex';
+  noteDialog.style.justifyContent = 'center';
+  noteDialog.style.alignItems = 'center';
+  noteDialog.style.zIndex = '1000';
+  
   noteDialog.innerHTML = `
-    <div class="note-dialog-content">
-      <h3>记录练习笔记</h3>
-      <textarea placeholder="写下你的练习心得和技巧..."></textarea>
-      <div class="note-actions">
-        <button class="cancel-btn">取消</button>
-        <button class="save-btn">保存</button>
+    <div class="note-dialog-content" style="background-color: white; padding: 20px; border-radius: 16px; width: 80%; max-width: 400px;">
+      <h3 style="margin-bottom: 16px; font-size: 18px; font-weight: 700;">记录练习笔记</h3>
+      <textarea placeholder="写下你的练习心得和技巧..." style="width: 100%; height: 150px; padding: 10px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 16px;"></textarea>
+      <div class="note-actions" style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="cancel-btn" style="padding: 8px 16px; border-radius: 8px; border: 1px solid #ddd; background-color: #f5f5f5;">取消</button>
+        <button class="save-btn" style="padding: 8px 16px; border-radius: 8px; border: none; background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); color: white;">保存</button>
       </div>
     </div>
   `;

@@ -85,7 +85,6 @@ const smilesConfig = {
         imageUrl: "img/badges/smile-3.svg"
       }
     },
-    // 继续添加剩余的35种笑容，结构相同
     {
       id: 4,
       name: "交谈时，取悦对方的谄媚之笑",
@@ -110,7 +109,7 @@ const smilesConfig = {
         imageUrl: "img/badges/smile-4.svg"
       }
     },
-    // 此处省略其余笑容配置，实际文件中需添加完整的38种笑容
+    // 此处省略中间笑容配置，实际文件中需添加完整的38种笑容
     {
       id: 38,
       name: "使对方放心的笑",

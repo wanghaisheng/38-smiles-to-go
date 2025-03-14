@@ -200,6 +200,7 @@
             position: relative;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            cursor: pointer;
         }
         
         .subscription-card:hover {
@@ -686,26 +687,26 @@
         
         <!-- 底部导航栏 -->
         <div class="bottom-nav">
-            <div class="nav-item">
+            <a href="home.html" class="nav-item">
                 <div class="nav-icon">🏠</div>
                 <div>首页</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="practice.html" class="nav-item">
                 <div class="nav-icon">📚</div>
                 <div>练习</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="analysis.html" class="nav-item">
                 <div class="nav-icon">📊</div>
                 <div>数据</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="community.html" class="nav-item">
                 <div class="nav-icon">👨‍👩‍👧‍👦</div>
                 <div>社区</div>
-            </div>
-            <div class="nav-item active">
+            </a>
+            <a href="subscription.html" class="nav-item active">
                 <div class="nav-icon">👤</div>
                 <div>我的</div>
-            </div>
+            </a>
         </div>
     </div>
     
@@ -757,6 +758,21 @@
         
         // 每秒更新倒计时
         setInterval(updateCountdown, 1000);
+        
+        // 修复底部导航栏链接
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (this.getAttribute('href')) {
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+        });
+        
+        // 订阅按钮点击事件
+        document.querySelector('.subscribe-btn').addEventListener('click', function() {
+            alert('感谢您订阅！您的会员身份已激活。');
+            window.location.href = 'home.html';
+        });
     </script>
 </body>
 </html>

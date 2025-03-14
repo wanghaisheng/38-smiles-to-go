@@ -522,27 +522,52 @@
         
         <!-- 底部导航栏 -->
         <div class="bottom-nav">
-            <div class="nav-item">
+            <a href="home.html" class="nav-item">
                 <div class="nav-icon">🏠</div>
                 <div>首页</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="practice.html" class="nav-item">
                 <div class="nav-icon">📚</div>
                 <div>练习</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="analysis.html" class="nav-item">
                 <div class="nav-icon">📊</div>
                 <div>数据</div>
-            </div>
-            <div class="nav-item active">
+            </a>
+            <a href="community.html" class="nav-item active">
                 <div class="nav-icon">👨‍👩‍👧‍👦</div>
                 <div>社区</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="subscription.html" class="nav-item">
                 <div class="nav-icon">👤</div>
                 <div>我的</div>
-            </div>
+            </a>
         </div>
     </div>
+    
+    <script>
+        // 修复底部导航栏链接
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (this.getAttribute('href')) {
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+        });
+        
+        // 添加帖子互动功能
+        document.querySelectorAll('.post-stat').forEach(stat => {
+            stat.addEventListener('click', function() {
+                const countElement = this.querySelector('span + span') || this;
+                let count = parseInt(countElement.textContent);
+                countElement.textContent = count + 1;
+            });
+        });
+        
+        // 添加发布新帖子功能
+        document.querySelector('.fab-button').addEventListener('click', function() {
+            alert('即将开放发帖功能，敬请期待！');
+        });
+    </script>
 </body>
 </html>

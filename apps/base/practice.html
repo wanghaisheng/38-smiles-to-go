@@ -382,7 +382,7 @@
         
         <!-- 头部 -->
         <div class="header">
-            <div class="back-button">←</div>
+            <div class="back-button" onclick="window.history.back()">←</div>
             <h1 class="page-title">笑容练习</h1>
             <div class="header-right"></div>
         </div>
@@ -395,8 +395,8 @@
                     <div class="progress-bar"></div>
                 </div>
                 <div class="progress-stats">
-                    <span>已完成: 15/38种笑容</span>
-                    <span>总进度: 65%</span>
+                    <span>已完成: 0/38种笑容</span>
+                    <span>总进度: 0%</span>
                 </div>
             </div>
             
@@ -462,27 +462,29 @@
         
         <!-- 底部导航栏 -->
         <div class="bottom-nav">
-            <div class="nav-item">
+            <a href="home.html" class="nav-item">
                 <div class="nav-icon">🏠</div>
                 <div>首页</div>
-            </div>
-            <div class="nav-item active">
+            </a>
+            <a href="practice.html" class="nav-item active">
                 <div class="nav-icon">📚</div>
                 <div>练习</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="analysis.html" class="nav-item">
                 <div class="nav-icon">📊</div>
                 <div>数据</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="community.html" class="nav-item">
                 <div class="nav-icon">👨‍👩‍👧‍👦</div>
                 <div>社区</div>
-            </div>
-            <div class="nav-item">
+            </a>
+            <a href="subscription.html" class="nav-item">
                 <div class="nav-icon">👤</div>
                 <div>我的</div>
-            </div>
+            </a>
         </div>
     </div>
+    
+    <script type="module" src="../../js/practice-ui.js"></script>
 </body>
 </html>
